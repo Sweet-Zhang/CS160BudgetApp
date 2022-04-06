@@ -21,18 +21,19 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
     private Button expenseBtn;
     private Button transactionBtn; // to be implemented later
 
+    FragmentManager fm = getSupportFragmentManager();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fragment);
 
-        FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentById(R.id.fragment_container);
         if (fragment == null) {
             fragment = createFragment();
             fm.beginTransaction()
                     .add(R.id.fragment_container, fragment) // Creates fragment transaction
-                    .addToBackStack("main")
+//                    .addToBackStack(null)
                     .commit(); // Commits fragment transaction
         }
 
@@ -44,9 +45,9 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
                 Fragment goalFragment = gla.createFragment();
 
                 fm.beginTransaction()
-                        .replace(R.id.fragment_container, goalFragment, null)
-                        .setReorderingAllowed(true)
-                        .addToBackStack("goals")
+                        .replace(R.id.fragment_container, goalFragment, "goal")
+//                        .setReorderingAllowed(true)
+                        .addToBackStack("goal")
                         .commit();
             }
         });
@@ -59,12 +60,22 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
                 Fragment expenseFragment = ela.createFragment();
 
                 fm.beginTransaction()
-                        .replace(R.id.fragment_container, expenseFragment, null)
-                        .setReorderingAllowed(true)
-                        .addToBackStack("expenses")
+                        .replace(R.id.fragment_container, expenseFragment, "expense")
+//                        .setReorderingAllowed(true)
+                        .addToBackStack("expense")
                         .commit();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+//        FragmentManager fm = getSupportFragmentManager();
+//        if(fm.getBackStackEntryCount() > 0 ) {
+//            fm.popBackStackImmediate("goal", 0);//Pops one of the added fragments
+//        }
+//        super.onBackPressed();
+        getSupportFragmentManager().popBackStackImmediate();
     }
 
 }
