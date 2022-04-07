@@ -10,26 +10,30 @@ public class Expense extends Category {
 //        return mExpenseCategories;
 //    }
 
+    // Instance variables
     private ArrayList<String> mMerchants;
-    //TODO add support for transactions
-//    private ArrayList<Transaction> mTransactions;
+    private ArrayList<Transaction> mTransactions;
 
+    // Constructor
     public Expense(String title, Frequency frequency, Double proposedAmount, Double currentAmount) {
         super(title, frequency, proposedAmount, currentAmount);
 //        mExpenseCategories.add(this);
     }
 
-//    public String getTitle() {
-//        return mTitle;
-//    }
-//
-//    public void setTitle(String title) {
-//        mTitle = title;
-//    }
-//
-//    public UUID getId() {
-//        return mId;
-//    }
+    // Returns the title of the expense
+    public String getTitle() {
+        return mTitle;
+    }
+
+    // Sets the title of the expense
+   public void setTitle(String title) {
+       mTitle = title;
+   }
+
+   // Gets the ID
+   public UUID getId() {
+       return mId;
+   }
 //
 //    public Double getCurrentAmount() {
 //        return mCurrentAmount;
