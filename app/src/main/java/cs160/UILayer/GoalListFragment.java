@@ -8,18 +8,13 @@ import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.activity.OnBackPressedCallback; // *** new
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.net.ProtocolFamily;
 import java.util.List;
 
 public class GoalListFragment extends Fragment {
@@ -29,8 +24,8 @@ public class GoalListFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_goal_list, container, false);
-        mGoalRecyclerView = (RecyclerView) view.findViewById(R.id.goal_recycler_view);
+        View view = inflater.inflate(R.layout.fragment_item_list, container, false);
+        mGoalRecyclerView = (RecyclerView) view.findViewById(R.id.item_recycler_view);
         mGoalRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         updateUI();
         return view;
@@ -73,11 +68,14 @@ public class GoalListFragment extends Fragment {
             mGoal = goal;
             mTitleTextView.setText(mGoal.getTitle());
             mAmountTextView.setText(mGoal.getProposedAmount().toString());
+            DateFormat df = new DateFormat();
+            CharSequence formattedDate = df.format("MMM d, yyyy", mGoal.getDate());
+            mDateTextView.setText(formattedDate);
         }
 
         @Override
         public void onClick(View view) {
-//            Toast.makeText(getActivity(), mExpense.getTitle() + " clicked!", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getActivity(), mGoal.getTitle() + " clicked!", Toast.LENGTH_SHORT).show();
             Intent intent = GoalActivity.newIntent(getActivity(), mGoal.getId());
             mLastClickedPosition = getAdapterPosition();
             startActivity(intent);

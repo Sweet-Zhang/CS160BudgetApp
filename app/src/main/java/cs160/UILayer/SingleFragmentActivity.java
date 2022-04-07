@@ -42,7 +42,7 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 GoalListActivity gla = new GoalListActivity();
-                Fragment goalFragment = gla.createFragment();
+                Fragment goalFragment = gla.createListFragment();
 
                 fm.beginTransaction()
                         .replace(R.id.fragment_container, goalFragment, "goal")
@@ -57,12 +57,27 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ExpenseListActivity ela = new ExpenseListActivity();
-                Fragment expenseFragment = ela.createFragment();
+                Fragment expenseFragment = ela.createListFragment();
 
                 fm.beginTransaction()
                         .replace(R.id.fragment_container, expenseFragment, "expense")
 //                        .setReorderingAllowed(true)
                         .addToBackStack("expense")
+                        .commit();
+            }
+        });
+
+        transactionBtn = (Button) findViewById(R.id.transactionButton);
+        transactionBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TransactionListActivity tla = new TransactionListActivity();
+                Fragment transactionFragment = tla.createListFragment();
+
+                fm.beginTransaction()
+                        .replace(R.id.fragment_container, transactionFragment, "transaction")
+//                        .setReorderingAllowed(true)
+                        .addToBackStack("transaction")
                         .commit();
             }
         });

@@ -4,20 +4,17 @@ import cs160.dataLayer.*;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.net.ProtocolFamily;
 import java.util.List;
 
 public class ExpenseListFragment extends Fragment {
@@ -27,8 +24,8 @@ public class ExpenseListFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_expense_list, container, false);
-        mExpenseRecyclerView = (RecyclerView) view.findViewById(R.id.expense_recycler_view);
+        View view = inflater.inflate(R.layout.fragment_item_list, container, false);
+        mExpenseRecyclerView = (RecyclerView) view.findViewById(R.id.item_recycler_view);
         mExpenseRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         updateUI();
         return view;
@@ -54,7 +51,7 @@ public class ExpenseListFragment extends Fragment {
     private class ExpenseHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView mTitleTextView;
         private TextView mAmountTextView;
-        private TextView mDateTextView;
+//        private TextView mDateTextView;
 //        private ImageView mSolvedImageView;
 
         private Expense mExpense;
@@ -64,7 +61,7 @@ public class ExpenseListFragment extends Fragment {
             itemView.setOnClickListener(this);
             mTitleTextView = (TextView) itemView.findViewById(R.id.expense_title);
             mAmountTextView = (TextView) itemView.findViewById(R.id.expense_amount);
-            mDateTextView = (TextView) itemView.findViewById(R.id.expense_date);
+//            mDateTextView = (TextView) itemView.findViewById(R.id.expense_date);
 //            mSolvedImageView = (ImageView) itemView.findViewById(R.id.expense_solved);
         }
 
